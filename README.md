@@ -6,5 +6,3 @@
 - Me interesa participar en proyectos de: Automatizacion
 - Puedo responder y colaborar en: Azure, Kubernets
 ### 
-camnbio numero 9
-s
