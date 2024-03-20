@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'word', defaultValue: '', description: 'Ingresa la palabra a buscar en el log')
+        choice(name: 'httpCode', choices: ['200', '500', '301'], description: 'Selecciona la palabra a buscar')
+    }
+    stages {
+            stage ('Descargar Logs') {
+                steps {
+                    // cambiar la url por la que se desee descargar
+                    sh 'curl -o /tmp/logfile.log https://raw.githubusercontent.com/elastic/examples/master/Common%20Data%20Formats/apache_logs/apache_logs'
+                }   
+        }
+        stage ('Contar lineas') {
+            steps {
+                script{
+                    COUNT = sh (script: "grep -c '${params.word}.*${params.httpCode}' /tmp/logfile.log", returnStdout: true).trim()
+                    echo "La cantidad de lineas encontradas es: ${COUNT}"
+                }
+            }
+        }
+    }
+}
