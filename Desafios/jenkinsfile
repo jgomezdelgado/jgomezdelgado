@@ -1,13 +1,16 @@
 pipeline {
     agent any
-    stages {
-        stage ('Contar lineas') {
-            steps {
-                script{
-                    COUNT = sh (script: "grep -c '${params.word}.*${params.httpCode}' /tmp/logfile.log", returnStdout: true).trim()
-                    echo "La cantidad de lineas encontradas es: ${COUNT}"
-                }
+    parameters {
+        string(name: 'login', defaultValue: '', description: 'Ingrese el username')
+        string(name: 'nombyapell', defaultValue: '', description: 'Ingrese Nombre y Apellido')
+        choice(name: 'depa', choices: ['contabilidad', 'finanzas', 'tecnologia'], description: 'Selecciona la palabra a buscar')
+    stages{
+        stage("paso 1"){
+            steps{
+                sh 
             }
+
         }
     }
+}
 }
