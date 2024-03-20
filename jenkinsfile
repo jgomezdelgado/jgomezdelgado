@@ -16,7 +16,7 @@ pipeline {
                 }
             }
         }
-        stage ('Contar lineas') {
+        stage ('Contar lineas logs') {
             steps {
                 script {
                 COUNT=sh(script: 'grep -c "logstash" /tmp/logfile.log', returnStdout: true).trim()
