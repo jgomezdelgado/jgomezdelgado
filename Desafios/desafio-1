@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Contar lineas') {
+            steps {
+                script{
+                    COUNT = sh (script: "grep -c '${params.word}.*${params.httpCode}' /tmp/logfile.log", returnStdout: true).trim()
+                    echo "La cantidad de lineas encontradas es: ${COUNT}"
+                }
+            }
+        }
+    }
+}
