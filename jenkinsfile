@@ -11,18 +11,10 @@ pipeline {
         stage ('Contar lineas') {
             steps {
                 script {
-                COUNT=sh(script: 'grep -c "HTTP/1.1\\" 200" /tmp/logfile.log', returnStdout: true).trim()
+                COUNT=sh(script: 'grep -c "*HTTP/1.1\\" 200" /tmp/logfile.log', returnStdout: true).trim()
                 echo "Número de coincidencias encontradas: ${COUNT}"
-                }
-        stage ('Contar Logs') {
-            steps {
-                script {
-                COUNT=sh(script: 'grep -c "logstash" /tmp/logfile.log', returnStdout: true).trim()
-                echo "Número de coincidencias encontradas: ${COUNT}"
-                }
                 }
             }
         }
-    }
     }
 }
